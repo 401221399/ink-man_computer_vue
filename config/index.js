@@ -10,12 +10,14 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    // 跨域
     proxyTable: {
       '/': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:8089',
         changeOrigin: true,
         pathRewrite: {
-          '^/': ''
+          '^/': ''///这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替
+                      // 比如我要调用'http://localhost:8089/user/login'，直接写‘/api/user/login’即可
         }
       }
     },

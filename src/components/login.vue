@@ -1,8 +1,8 @@
 
 <template>
   <body style="background-color: white; height: 100%;width: 100%;position: fixed;margin: 0;padding: 0">
-  <div style="width: 100%;margin: 0 auto;">
-    <div class="logo" >
+  <div style="width: 100%;height: 88px;margin: 0 auto;">
+    <div class="logo" style="margin-top: 0px;">
       <router-link to='index'  style="display: block;width: 100%;height: 100%;"></router-link>
     </div>
   </div>
@@ -61,6 +61,15 @@ export default {
     }
   },
   methods: {
+    // 设置cookie
+    setCookie: function (cname, cvalue, exdays) {
+      var d = new Date()
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+      var expires = 'expires=' + d.toUTCString()
+      console.info(cname + '=' + cvalue + '; ' + expires)
+      document.cookie = cname + '=' + cvalue + '; ' + expires
+      console.info(document.cookie)
+    },
     login () {
       this.$axios
         .post('user/login', {
@@ -71,6 +80,7 @@ export default {
           console.log(successResponse)
           if (successResponse.data.code === 0) {
             this.$router.replace({path: '/'})
+            this.setCookie('username', this.loginForm.username, 365)
           } else {
             this.$swal({
               type: 'error',

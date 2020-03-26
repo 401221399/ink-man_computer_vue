@@ -1,0 +1,72 @@
+.pkbox{
+  position: relative;
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+  width: 1200px;
+  height: auto;
+  margin: auto;
+}
+.pkbox table{
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #e6e6e6;
+}
+.table-header{
+  width: 1200px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #f9f9f9;
+
+}
+.table-header span{
+  color: #0077dd;
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+}
+.title th {
+  padding: 8px 10px;
+  width: 108px;
+  vertical-align: middle;
+  border: 1px solid #e6e6e6;
+  font-weight: normal;
+  text-align: center;
+  line-height: 18px;
+  font-size: 14px;
+  height: 20px;
+  background: #fafafa;
+}
+.title td {
+  padding: 20px 0 10px;
+  vertical-align: middle;
+  text-align: center;
+  zoom: 1;
+  width: 213px;
+  word-wrap: break-word;
+  word-break: break-all;
+  border: 1px solid #e6e6e6;
+}
+.parameter-th{
+  padding: 8px 10px;
+  width: 108px;
+  vertical-align: middle;
+  border: 1px solid #e6e6e6;
+  font-weight: normal;
+  text-align: center;
+  line-height: 18px;
+  font-size: 14px;
+  height: 20px;
+  background: #fafafa;
+}
+.parameter-td{
+  padding: 8px 0;
+  zoom: 1;
+  width: 213px;
+  text-align: center;
+  word-wrap: break-word;
+  word-break: break-all;
+  height: 20px;
+  border: 1px solid #e6e6e6;
+  line-height: 20px;
+}

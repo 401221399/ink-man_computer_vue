@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="layui-carousel" id="bg-item">
+    <div class="loginpane">
+        <h3>管理员登录</h3>
+        <hr class="layui-bg-orange">
+        <div class="login">
+            <form class="layui-form layui-form-pane admin-form" method="post">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账&emsp;号</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="username" name="username" required lay-verify="required" placeholder="请输入管理员账号"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密&emsp;码</label>
+                    <div class="layui-input-block">
+                        <input type="password" id="password" name="userpwd" required lay-verify="required" placeholder="请输入管理员密码"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <button lay-submit lay-filter="admin" class="layui-btn layui-btn-fluid layui-btn-lg layui-btn-warm layui-btn-radius">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div carousel-item>
+        <div style="background: url('../images/banner2.jpg')no-repeat center/cover"></div>
+    </div>
+</div>
+<script src="../../layui/layui.js"></script>
+<script>
+    layui.use(['element', 'carousel', 'layer','form'], function () {
+        var element = layui.element,
+            carousel = layui.carousel,
+            $ = layui.jquery,
+            layer = layui.layer,
+            form = layui.form;
+        carousel.render({
+            elem: "#bg-item",
+            anim: "fade",
+            full: true,
+            arrow: 'none',
+            indicator: 'none'
+        });
+
+      $.ajax({
+        url : "/admin/getUserList?page=1&limit=10",
+        type : "get",
+        contentType : "application/json;charset=UTF-8",
+        //定义回调响应的数据格式为JSON字符串,该属性可以省略
+        dataType : "json",
+        success : function(data){
+          if(data.code == '0')
+          {
+            $(window.frameElement).hide();
+            $(window.frameElement).next().show();
+          }
+        }
+      });
+
+        form.on("submit(admin)",function (data) {
+            var username=$("#username").val();
+            var password=$("#password").val();
+            $.ajax({
+                url : "/admin/admin_login",
+                type : "post",
+                // data表示发送的数据
+                data :JSON.stringify({username:username,password:password}),
+                // 定义发送请求的数据格式为JSON字符串
+                contentType : "application/json;charset=UTF-8",
+                //定义回调响应的数据格式为JSON字符串,该属性可以省略
+                dataType : "json",
+                success : function(data){
+                    if(data.code == '0')
+                    {
+                      $(".admin-form")[0].reset();
+                      $(window.frameElement).hide();
+                      $(window.frameElement).next().show();
+                      //location.reload();
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+
+                }
+            });
+            return false
+        });
+    });
+</script>
+</body>
+</html>

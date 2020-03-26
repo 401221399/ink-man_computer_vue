@@ -138,6 +138,7 @@ export default {
 </script>
 
 <style >
+  @import "../assets/css/common.css";
   .ok{
     padding: 10px;
     margin: 0;
@@ -162,7 +163,7 @@ export default {
     color: white;
     text-decoration:none;
     font-size: 18px;
-    padding: 5px 15px 5px 15px;
+    padding: 5px 60px;
     border-radius: 3px;
   }
   .el_input .el-input__inner {

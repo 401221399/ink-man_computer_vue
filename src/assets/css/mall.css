@@ -1,0 +1,241 @@
+
+.selectbox{
+  position: relative;
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+  width: 1200px;
+  height: auto;
+  margin: auto;
+}
+.selectbox .hd {
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 0;
+  background-color: #f9f9f9;
+  color: #0077dd;
+  border: none;
+}
+.selectbox .hd .current {
+  color: #0077dd;
+  border-bottom: 2px solid #0077dd;
+  font-size: 18px;
+  /* background-color: #fff; */
+  cursor: default;
+}
+.selectbox .hd a {
+  padding: 0 10px;
+  display: block;
+  margin-top: -1px;
+  float: left;
+  font-size: 18px;
+  color: #999;
+}
+.selectbox  .bd {
+  padding: 0 14px;
+  font-size: 14px;
+}
+.filter-brand, .filter-other {
+  border-bottom: 1px solid #f2f2f2;
+}
+.filter-brand, .filter-other, .filter-selected {
+  padding: 0;
+  margin: 12px 0 0;
+  *zoom: 1;
+  width: 100%;
+  height: 50px;
+}
+.prop-name {
+  width: 110px;
+  margin-right: 4px;
+  text-align: right;
+  display: block;
+  float: left;
+  color: #999;
+  line-height: 35px;
+}
+.prop-values {
+  width: 785px;
+  float: left;
+  position: relative;
+  padding-bottom: 10px;
+}
+.filter-option {
+  overflow: visible;
+  height: auto;
+  max-height: 100000px;
+  width: 1000px;
+  float: left;
+  margin-left: 0;
+  padding-left: 45px;
+}
+.tab-content {
+  padding-left: 0;
+}
+.con-item {
+  margin-right: 6px;
+  padding-right: 3px;
+  display: inline-block;
+}
+.filter-option .unlimited {
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.filter-option .current a {
+  color: #0077dd;
+  border: 1px solid #0077dd;
+}
+.con-item {float:left;margin-right:9px; margin-bottom:0px;}
+.con-item a {color:#333; height:28px;line-height:28px;padding:0 4px;margin:3px 0;display:inline-block;_display:inline;_zoom:1; overflow:hidden; border:1px solid #fff;}
+.con-item a:hover {text-decoration:none;color:#0077dd;}
+.con-item a img{border:1px solid #e5e5e5;}
+.con-item a:hover img,.filter-option .current img{border:1px solid #0077dd;}
+.con-item .deny {color:#999;cursor:text;}
+.con-item .deny:hover {text-decoration:none;}
+
+
+.priceinput{
+  width: 60px;
+  padding: 1px 1px 1px 3px;
+  height: 34px;
+  border: 1px solid #ccc;
+  color: #777;
+  float: left;
+}
+.pricespan{
+  float: left;
+  height: 34px;
+  line-height: 34px;
+}
+.pricebutton{
+  display: inline-block;
+  padding: 0 10px;
+  line-height: 24px;
+  border-radius: 3px;
+  cursor: pointer;
+  float: left;
+  margin: 6px 10px;
+  color: #ff6700;
+  background: white;
+  border: 1px #ff6700 solid;
+}
+.pricebutton:hover{
+  color: white;
+  background: #ff6700;
+}
+.item-list{
+  position: relative;
+  overflow: hidden;
+  width: 1200px;
+  height: auto;
+  margin: auto;
+}
+.item-list ul {
+  padding-left: 10px;
+  margin-right: -28px;
+}
+.itemli{
+  width: 200px;
+  padding: 20px 0 36px;
+  margin: 15px 37px 15px 0;
+  float: left;
+  display: inline;
+  position: relative;
+}
+.itembox{
+  position: relative;
+  height: 100%;
+  background: #fff;
+  text-align: center;
+}
+.itembox img{
+  width: 100%;
+}
+.itembox h5{
+  color: #333;
+  margin: 0 auto;
+  display:block;
+  width: 100%;
+  height: 44px;
+  overflow:hidden;
+}
+.itembox p{
+  color: #999;
+  margin: 0 auto;
+  font-size: 12px;
+  display:block;
+  width: 100%;
+  height: 33px;
+  overflow:hidden;
+}
+
+.pager{
+  position: absolute;
+  bottom: 10px;
+  width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+}
+.pager-current{
+  border: 1px solid #44aaff;
+  background: #44aaff;
+  color: #fff;
+  cursor:default ;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 12px;
+  text-align: center;
+  display: inline-block;
+}
+.pager-default{
+  border: 1px solid #e5e5e5;
+  color: #bbb;
+  margin-right: 2px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 12px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+}
+.pager-default:hover{
+  border: 1px solid #44aaff;
+  background: #44aaff;
+  color: #fff;
+}
+.pager-null{
+  border: 1px solid #e5e5e5;
+  color: #bbb;
+  margin-right: 2px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 12px;
+  text-align: center;
+  display: inline-block;
+  cursor: default;
+}
+.sort-box {
+  position: relative;
+  overflow: hidden;
+  width: 1200px;
+  height: auto;
+  margin: auto;
+  border: 1px solid #e6e6e6;
+  background: #fafafa;
+}
+.sort a{
+  font-size: 14px;
+  float: left;
+  margin-left: -1px;
+  padding: 7px 18px;
+  height: 24px;
+  border-left: 1px solid #fafafa;
+  border-right: 1px solid #fafafa;
+  color: #666;
+  line-height: 24px;
+}
+.sort a:hover {
+  background: white;
+}

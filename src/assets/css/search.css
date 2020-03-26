@@ -1,0 +1,121 @@
+.pagetool{
+  text-align: center;
+  position: relative;
+  width: 90%;
+  padding: 0;
+  height: 30px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.search-text{
+  width: 480px;
+  border: 3px solid #55bee6;
+  height: 36px;
+  padding: 0px 10px;
+}
+.search-btn{
+  cursor: pointer;
+  background:#55bee6;
+  color: white;
+  font-size: 18px;
+  padding: 10px 14px;
+}
+.page_last{
+  margin-left: -7px;
+  padding: 0 12px;
+  height: 26px;
+  line-height: 26px;
+  margin-bottom: 10px;
+  border: none;
+  background: 0 0;
+  border-radius: 2px 0 0 2px;
+}
+.page_curr{
+  width: 30px;
+  height: 26px;
+  line-height: 26px;
+  margin-bottom: 10px;
+  border: none;
+  background: 0 0;
+  margin-left: 0;
+  padding: 3px 14px;
+  color: white;
+  background-color: #009688;
+}
+.page_next{
+  padding: 0 12px;
+  height: 26px;
+  line-height: 26px;
+  margin-bottom: 10px;
+  border: none;
+  background: 0 0;
+}
+.page_input{
+  width: 40px;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  margin: 0 10px;
+  padding: 0 3px;
+  text-align: center;
+  border-radius: 2px;
+  vertical-align: top;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.page_btn{
+  display: inline-block;
+  height: 26px;
+  margin-left: 10px;
+  padding: 0 10px;
+  cursor: pointer;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 2px;
+  vertical-align: top;
+  background-color: #fff;
+  box-sizing: border-box;
+  border: 1px solid #e2e2e2;
+}
+.search_results{
+  width: 1226px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.sttl {
+  margin: 10px 0;
+  padding: 5px;
+  border-bottom: 1px solid #CCC;
+  background: #F5F5F5;
+}
+.result_box{
+  width: 45%;
+  margin-top: 20px;
+  float: left;
+}
+.result_box ul{
+  margin: 0;
+  padding: 0;
+}
+.result_box ul li{
+  padding-bottom: 20px;
+}
+.title{
+  font-size: 18px;
+}
+.title a:visited {
+  color: purple;
+}
+.title a{
+  font-size: 18px;
+  color: #00C;
+  text-decoration: underline;
+  font-weight: 400;
+}
+.title a strong font{
+  font-size: 18px;
+  font-weight: 400;
+}
+.xg1{
+  color: #999;
+}

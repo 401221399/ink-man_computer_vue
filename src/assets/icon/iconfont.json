@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "90513",
+      "name": "15天无理由退货",
+      "font_class": "15tianwuliyoutuihuo",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
       "icon_id": "122687",
       "name": "all",
       "font_class": "all",
@@ -797,6 +804,13 @@
       "unicode_decimal": 59210
     },
     {
+      "icon_id": "838048",
+      "name": "7天无理由退货",
+      "font_class": "7tianwuliyoutuihuo",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
       "icon_id": "856292",
       "name": "libra",
       "font_class": "libra",
@@ -1049,6 +1063,20 @@
       "unicode_decimal": 59502
     },
     {
+      "icon_id": "4553749",
+      "name": "位置",
+      "font_class": "weizhi",
+      "unicode": "e7e0",
+      "unicode_decimal": 59360
+    },
+    {
+      "icon_id": "4735260",
+      "name": "icon_pk",
+      "font_class": "icon_pk",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
       "icon_id": "5203487",
       "name": "pin-fill",
       "font_class": "pin-fill",
@@ -1131,6 +1159,13 @@
       "font_class": "sound-filling",
       "unicode": "e885",
       "unicode_decimal": 59525
+    },
+    {
+      "icon_id": "6024771",
+      "name": "pk",
+      "font_class": "xxhdpiCombinedShape",
+      "unicode": "e615",
+      "unicode_decimal": 58901
     },
     {
       "icon_id": "7711442",
