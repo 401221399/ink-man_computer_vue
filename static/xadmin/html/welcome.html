@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    <head>
+        <meta charset="UTF-8">
+        <title>个人中心</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" href="../css/font.css">
+        <link rel="stylesheet" href="../css/xadmin.css">
+        <script src="../lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../js/xadmin.js"></script>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <blockquote id="WelcomeText" class="layui-elem-quote">
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">数据统计</div>
+                        <div class="layui-card-body ">
+                            <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>订单</h3>
+                                        <p>
+                                            <cite>0</cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>收藏</h3>
+                                        <p>
+                                            <cite class="collection_count" >0</cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>购物车</h3>
+                                        <p>
+                                            <cite class="shopcar_count">0</cite></p>
+                                    </a>
+                                </li>
+                              <li class="layui-col-md2 layui-col-xs6">
+                                <a href="javascript:;" class="x-admin-backlog-body">
+                                  <h3>收货信息</h3>
+                                  <p>
+                                    <cite class="userinfo_count">0</cite></p>
+                                </a>
+                              </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">个人信息</div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table">
+                                <tbody>
+                                    <tr>
+                                        <th>账户名</th>
+                                        <td class="username">1.0.180420</td></tr>
+                                    <tr>
+                                      <th>用户名</th>
+                                      <td class="name"></td></tr>
+                                    <tr>
+                                        <th>密码</th>
+                                        <td><a onclick="" style="cursor: pointer;background:#009688;padding: 2px 5px;color: white;border-radius: 5px; ">修改密码</a></td></tr>
+                                    <tr>
+                                        <th>默认收货地址</th>
+                                        <td class="address"></td></tr>
+                                    <tr>
+                                        <th>默认联系信息</th>
+                                        <td class="phone"></td></tr>
+                                    <tr>
+                                        <th>默认收件人</th>
+                                        <td class="userinfo_name"></td></tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        </div>
+    </body>
+    <script>
+      //获取当前时间
+      function getFormatDate(){
+        var nowDate = new Date();
+        var year = nowDate.getFullYear();
+        var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+        var date = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+        var hour = nowDate.getHours()< 10 ? "0" + nowDate.getHours() : nowDate.getHours();
+        var minute = nowDate.getMinutes()< 10 ? "0" + nowDate.getMinutes() : nowDate.getMinutes();
+        var second = nowDate.getSeconds()< 10 ? "0" + nowDate.getSeconds() : nowDate.getSeconds();
+        return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
+      }
+      $.ajax({
+        url : "http://localhost:8089/user/authentication",
+        type : "get",
+        xhrFields: {
+          withCredentials: true // 带上cookies才可以识别用户登录情况
+        },
+        //定义回调响应的数据格式为JSON字符串,该属性可以省略
+        dataType : "json",
+        success : function(data){
+          $("#WelcomeText").html("欢迎您：" + "<span class=\"x-red\">"+data.name+"</span>！当前时间:"+getFormatDate())
+          $(".username").html(data.username)
+          $(".name").html(data.name)
+        }
+      });
+      $.ajax({
+        url : "http://localhost:8089/user/getUserInfoCount",
+        type : "get",
+        xhrFields: {
+          withCredentials: true // 带上cookies才可以识别用户登录情况
+        },
+        //定义回调响应的数据格式为JSON字符串,该属性可以省略
+        dataType : "json",
+        success : function(data){
+          $(".userinfo_count").html(data.count);
+        }
+      });
+      $.ajax({
+        url : "http://localhost:8089/user/getFirstUserInfo",
+        type : "get",
+        xhrFields: {
+          withCredentials: true // 带上cookies才可以识别用户登录情况
+        },
+        //定义回调响应的数据格式为JSON字符串,该属性可以省略
+        dataType : "json",
+        success : function(data){
+          $(".address").html(data.userinfo.address);
+          $(".phone").html(data.userinfo.phone);
+          $(".userinfo_name").html(data.userinfo.name);
+        }
+      });
+      $.ajax({
+        url : "http://localhost:8089/item_options/getShopcar_CollectionCount/shopcar",
+        type : "get",
+        xhrFields: {
+          withCredentials: true // 带上cookies才可以识别用户登录情况
+        },
+        //定义回调响应的数据格式为JSON字符串,该属性可以省略
+        dataType : "json",
+        success : function(data){
+          $(".shopcar_count").html(data.count);
+        }
+      });
+      $.ajax({
+        url : "http://localhost:8089/item_options/getShopcar_CollectionCount/collection",
+        type : "get",
+        xhrFields: {
+          withCredentials: true // 带上cookies才可以识别用户登录情况
+        },
+        //定义回调响应的数据格式为JSON字符串,该属性可以省略
+        dataType : "json",
+        success : function(data){
+          $(".collection_count").html(data.count);
+        }
+      });
+    </script>
+</html>
