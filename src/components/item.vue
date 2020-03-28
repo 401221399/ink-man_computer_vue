@@ -99,6 +99,92 @@
     <span class="toolbar-text">人工服务</span>
   </div>
 </div>
+
+<div class="zhezhao" v-show="ordershow" id='zhezhao'></div>
+<div class="tankuang" v-show="ordershow">
+  <div class="order_title">
+    <span>提交订单</span>
+    <div class="order_close" @click="closeOrder()">x</div>
+  </div>
+  <div>
+    <div style="width: 600px;margin: 0 auto;">
+      <img :src="showImgurl" width="200px" />
+      <div style="width: 400px; float: right;text-align: center;margin: 50px 0">
+        <span v-text="itemname" style="text-align: center;"></span>
+      </div>
+      <table class="orderTable">
+        <tr rowspan="2">
+          <th>单价</th>
+          <td v-text="itemprice"></td>
+        </tr>
+        <tr rowspan="2">
+          <th>数量</th>
+          <td>
+            <div style="margin: 0 auto;width: 140px;">
+              <div style="float: left;cursor: pointer" @click="changenum(-1)"><img src="../assets/img/X15.png"></div>
+              <input style="height: 30px;width: 60px;border: 1px solid #dddddd;line-height: 30px;text-align: center;float: left;" name="num" :value="itemnum">
+              <div style="float: left;cursor: pointer" @click="changenum(1)"><img src="../assets/img/X16.png"></div>
+              <div style=" clear:both; "></div>
+            </div>
+          </td>
+        </tr>
+        <tr rowspan="2">
+          <th>总价</th>
+          <td v-text="itemnum*itemprice"></td>
+        </tr>
+        <tr rowspan="2">
+          <th>选择收货信息</th>
+          <td>
+            <button type="button" @click="openUserInfo()" class="order_btn">选择</button>
+          </td>
+        </tr>
+        <tr rowspan="2">
+          <th>收货人</th>
+          <td v-text="firstUserInfo.name"></td>
+        </tr>
+        <tr rowspan="2">
+          <th>联系方式</th>
+          <td v-text="firstUserInfo.phone"></td>
+        </tr>
+        <tr rowspan="2">
+          <th>收货地址</th>
+          <td v-text="firstUserInfo.address"></td>
+        </tr>
+
+      </table>
+      <div style="text-align: center;margin: 10px 0px">
+        <button @click="submitOrder()"  class="order_btn" type="button">提交订单</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tankuang" v-show="UserInfoshow">
+  <div class="order_title">
+    <span>选择收货信息</span>
+    <div class="order_close" @click="closeUserInfo">x</div>
+  </div>
+  <div>
+    <div style="width: 600px;margin: 0 auto;">
+      <table class="orderTable">
+        <tr rowspan="4">
+          <th></th>
+          <th>收货人</th>
+          <th>联系方式</th>
+          <th>收货地址</th>
+        </tr>
+        <tr rowspan="4" v-for="(item,index) of UserInfoList" :key="index">
+          <th><input type="radio"  name="userinfoselect" :value="item.id" v-model="UserInfoselect"/></th>
+          <th v-text="item.name"></th>
+          <th v-text="item.phone"></th>
+          <th v-text="item.address"></th>
+        </tr>
+      </table>
+      <div style="text-align: center;margin-top: 5px">
+        <button @click="selectUserInfo()" class="order_btn" type="button">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--商品信息-->
   <div id="a" class="Xcontent">
     <ul class="Xcontent01">
@@ -133,7 +219,7 @@
           <form><input class="input" name="num" :value="itemnum"></form>
           <div class="Xcontent33" @click="changenum(1)"><img src="../assets/img/X16.png"></div>
         </div>
-        <div class="Xcontent34" style="cursor:pointer;"><img src="../assets/img/X17.png"></div>
+        <div class="Xcontent34"><a @click="openOrder()" style="cursor: pointer"><img src="../assets/img/X17.png"></a></div>
         <div class="Xcontent35"><a @click="addshopcar()" style="cursor: pointer"><img src="../assets/img/X18.png"></a></div>
         <div class="Xcontent35"><a @click="addPK(itemid)" style="cursor: pointer"><img style="border: 1px solid #5a5a5a;" src="../assets/img/pk.png"></a></div>
       </ol>
@@ -283,6 +369,13 @@ export default {
   name: 'item',
   data: function () {
     return {
+      isLogin: false,
+      username: '',
+      ordershow: false,
+      UserInfoshow: false,
+      UserInfoselect: '',
+      UserInfoList: [],
+      firstUserInfo: {},
       searchword: '',
       itemname: '',
       itemprice: '',
@@ -303,6 +396,70 @@ export default {
     }
   },
   methods: {
+    openOrder: function () {
+      if (this.isLogin) {
+        this.getFristUserInfo()
+        this.ordershow = true
+      } else {
+        this.$swal({
+          type: 'error',
+          title: '提示',
+          showCloseButton: true,
+          text: '您还未登录，请登录',
+          showCancelButton: false
+        }).then((value) => {
+          this.$router.replace({path: '/login'})
+        })
+      }
+    },
+    closeOrder: function () {
+      this.ordershow = false
+    },
+    openUserInfo: function () {
+      this.getUserInfoList()
+      this.ordershow = false
+      this.UserInfoshow = true
+    },
+    closeUserInfo: function () {
+      this.UserInfoshow = false
+      this.ordershow = true
+    },
+    selectUserInfo: function () {
+      for (var i = 0; i < this.UserInfoList.length; i++) {
+        if (this.UserInfoList[i].id === this.UserInfoselect) {
+          this.firstUserInfo['id'] = this.UserInfoList[i].id
+          this.firstUserInfo['name'] = this.UserInfoList[i].name
+          this.firstUserInfo['phone'] = this.UserInfoList[i].phone
+          this.firstUserInfo['address'] = this.UserInfoList[i].address
+        }
+      }
+      this.UserInfoshow = false
+      this.ordershow = true
+    },
+    submitOrder: function () {
+      var firstUserInfo = this.firstUserInfo
+      this.$axios.post('/order/save_Order/',
+        {itemid: parseInt(this.$route.params.id),
+          id: '0',
+          name: firstUserInfo.name,
+          userid: '',
+          address: firstUserInfo.address,
+          phone: firstUserInfo.phone,
+          count: parseInt(this.itemnum)})
+        .then(res => {
+          if (res.data.code === 0) {
+            this.getShopCarList()
+            this.$swal({
+              type: 'success',
+              title: '提示',
+              text: '提交订单成功',
+              showCloseButton: true,
+              showCancelButton: false
+            })
+          }
+        }).catch(failResponse => {
+        })
+    },
     search: function () {
       if (this.searchword === 'index' || this.searchword === '') {
         window.location.href = 'http://localhost:8090/#/search/index'
@@ -469,9 +626,37 @@ export default {
         })
         .catch(failResponse => {
         })
+    },
+    getUserInfoList: function () {
+      this.$axios.get('/user/getUserInfoList')
+        .then(res => {
+          this.UserInfoList = res.data.data
+        })
+        .catch(failResponse => {
+        })
+    },
+    getFristUserInfo: function () {
+      this.$axios.get('/user/getFirstUserInfo')
+        .then(res => {
+          this.firstUserInfo = res.data.userinfo
+        })
+        .catch(failResponse => {
+        })
     }
   },
   mounted: function () {
+    this.$axios.get('/user/authentication/')
+      .then(successResponse => {
+        if (successResponse.data) {
+          this.isLogin = true
+          this.username = successResponse.data.name
+        } else {
+          this.isLogin = false
+        }
+      })
+      .catch(failResponse => {
+        this.isLogin = false
+      })
     this.getPKList()
     this.getShopCarList()
   },
